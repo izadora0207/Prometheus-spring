@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html
+  lang="pt-br"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout}"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Cadastro Matéria</title>
+  </head>
+  <body>
+    <div layout:fragment="body">
+      <form
+        class="mt-4"
+        th:action="@{/materia/cadastrar}"
+        method="post"
+        th:object="${materiaFacul}"
+      >
+        <input th:field="*{id}" type="hidden" />
+
+        <div class="form-group">
+          <label for="nomeFacul">Nome da Materia</label>
+          <input
+            th:field="*{nomeFacul}"
+            type="text"
+            class="form-control"
+            id="nomeFacul"
+          />
+        </div>
+        <div class="form-group">
+          <label for="desc">Descrição</label>
+          <textarea
+            th:field="*{desc}"
+            class="form-control"
+            id="desc"
+          ></textarea>
+        </div>
+        <select class="form-control mb-2" th:field="*{dificuldade}">
+          <option value="option1">Selecione uma categoria</option>
+          <option
+            th:each="dificuldade : ${T(br.com.tage.core.model.Dificuldade).values()}"
+            th:value="${dificuldade}"
+            th:text="${dificuldade}"
+          ></option>
+        </select>
+        <button type="submit" class="btn btn-outline-success mr-2">
+          Cadastrar
+        </button>
+        <a th:href="@{/}" class="btn btn-outline-danger">Voltar</a>
+      </form>
+    </div>
+  </body>
+</html>

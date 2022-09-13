@@ -1,0 +1,11 @@
+{
+  "groups": [
+    {
+      "name": "oracle",
+      "type": "br.com.tage.core.configuration.OracleConfiguration",
+      "sourceType": "br.com.tage.core.configuration.OracleConfiguration"
+    }
+  ],
+  "properties": [],
+  "hints": []
+}

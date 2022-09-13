@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html
+  lang="pt-br"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout}"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Materia</title>
+  </head>
+  <body>
+    <div layout:fragment="body">
+      <h1 class="mb-4 mt-4 text-center">Olá, Professor!</h1>
+      <p class="mb-4 mt-4 text-center f-15">Adicione seus conteúdos aqui.</p>
+      <h3 class="mb-4 mt-4">Conteúdos</h3>
+
+      <p
+        th:if="${msg != null}"
+        th:text="${msg}"
+        class="mb-4 alert alert-success"
+      ></p>
+
+      <table class="table">
+        <tr>
+          <th>Nome</th>
+          <th>Descrição</th>
+          <th>Dificuldade</th>
+          <th colspan="2">Ações</th>
+        </tr>
+        <tr th:each="materia:${materiaFacul}">
+          <td th:text="${materia.nomeFacul}"></td>
+          <td th:text="${materia.desc}"></td>
+          <td th:text="${materia.dificuldade}"></td>
+          <td>
+            <form
+              th:action="@{/materia/excluir/}+${materia.id}"
+              method="post"
+              class="form-inline"
+            >
+              <a
+                th:href="@{/materia/editar/}+${materia.id}"
+                class="btn btn-outline-primary mr-2"
+                >Editar</a
+              >
+              <button type="submit" class="btn btn-outline-danger">
+                Excluir
+              </button>
+            </form>
+          </td>
+        </tr>
+      </table>
+      <a class="btn btn-outline-primary" th:href="@{/materia/cadastrar}"
+        >Cadastrar Materia</a
+      >
+    </div>
+  </body>
+</html>
